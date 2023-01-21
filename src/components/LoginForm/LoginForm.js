@@ -20,7 +20,7 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} autoComplete="off">
       <label>
         Email
-        <input type="email" name="email" />
+        <input type="email" name="email" autoFocus />
       </label>
       <label>
         Password

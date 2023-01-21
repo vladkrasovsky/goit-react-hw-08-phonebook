@@ -21,7 +21,7 @@ const RegisterForm = () => {
     <form onSubmit={handleSubmit} autoComplete="off">
       <label>
         Username
-        <input type="text" name="name" />
+        <input type="text" name="name" autoFocus />
       </label>
       <label>
         Email
