@@ -1,3 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function NotFound() {
-  return <div>Not Found</div>;
+  return (
+    <>
+      <Helmet>
+        <title>Not Found</title>
+      </Helmet>
+      <div>Not Found</div>
+    </>
+  );
 }
