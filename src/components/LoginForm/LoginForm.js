@@ -1,33 +1,51 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { Box, Flex, VStack } from '@chakra-ui/react';
+import { Formik } from 'formik';
+import { InputControl, SubmitButton } from 'formik-chakra-ui';
+import * as Yup from 'yup';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
+  const initialValues = {
+    email: '',
+    password: '',
   };
 
+  const onSubmit = values => dispatch(logIn(values));
+
+  const validationSchema = Yup.object({
+    email: Yup.string().email().required(),
+    password: Yup.string().required(),
+  });
+
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" autoFocus />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <Flex bg="gray.100" align="center" justify="center" h="100vh">
+      <Box bg="white" p={6} rounded="md" w={80}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ handleSubmit, values, errors }) => (
+            <form onSubmit={handleSubmit}>
+              <VStack spacing={4} align="flex-start">
+                <InputControl name="email" label="Email" />
+                <InputControl
+                  name="password"
+                  label="Password"
+                  inputProps={{ type: 'password' }}
+                />
+                <SubmitButton colorScheme="purple" width="full">
+                  Login
+                </SubmitButton>
+              </VStack>
+            </form>
+          )}
+        </Formik>
+      </Box>
+    </Flex>
   );
 };
 
