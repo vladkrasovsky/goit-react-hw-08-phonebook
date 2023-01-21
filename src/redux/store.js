@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { combineReducers } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -30,24 +29,12 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-// https://stackoverflow.com/a/61943631
-
-const combinedReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, authReducer),
-  contacts: contactsReducer,
-  filters: filtersReducer,
-});
-
-const rootReducer = (state, action) => {
-  if (action.type === 'auth/logout/fulfilled') {
-    // check for action type
-    state = undefined;
-  }
-  return combinedReducer(state, action);
-};
-
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    contacts: contactsReducer,
+    filters: filtersReducer,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
