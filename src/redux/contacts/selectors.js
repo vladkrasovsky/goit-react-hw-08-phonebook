@@ -9,8 +9,16 @@ export const selectVisibleContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, nameFilter) => {
     const normalizedFilter = nameFilter.trim().toLowerCase();
-    return contacts.filter(contact =>
+
+    const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
+
+    const inAlphabeticalOrder = filteredContacts.sort(
+      (firstContact, secondContact) =>
+        firstContact.name.localeCompare(secondContact.name)
+    );
+
+    return inAlphabeticalOrder;
   }
 );
