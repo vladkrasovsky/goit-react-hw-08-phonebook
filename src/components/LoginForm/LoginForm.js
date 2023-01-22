@@ -21,8 +21,8 @@ const LoginForm = () => {
   });
 
   return (
-    <Flex bg="gray.100" align="center" justify="center" h="100vh">
-      <Box bg="white" p={6} rounded="md" w={80}>
+    <Flex align="center" justify="center" h="100%" p={3}>
+      <Box p={6} rounded="md" w={80}>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}

@@ -1,18 +1,17 @@
 import { useSelector } from 'react-redux';
 import { selectVisibleContacts } from 'redux/contacts/selectors';
 import Contact from 'components/Contact';
+import { Stack, StackDivider } from '@chakra-ui/react';
 
 const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
 
   return (
-    <ul>
+    <Stack divider={<StackDivider />} spacing="4">
       {contacts.map(contact => (
-        <li key={contact.id}>
-          <Contact {...contact} />
-        </li>
+        <Contact key={contact.id} {...contact} />
       ))}
-    </ul>
+    </Stack>
   );
 };
 

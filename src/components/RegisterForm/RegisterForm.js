@@ -25,15 +25,15 @@ const RegisterForm = () => {
   });
 
   return (
-    <Flex bg="gray.100" align="center" justify="center" h="100vh">
-      <Box bg="white" p={6} rounded="md" w={80}>
+    <Flex align="center" justify="center" h="100%" p={3}>
+      <Box p={6} rounded="md" w={80}>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
           {({ handleSubmit, values, errors }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete="off">
               <VStack spacing={4} align="flex-start">
                 <InputControl name="name" label="Name" />
                 <InputControl name="email" label="Email" />
