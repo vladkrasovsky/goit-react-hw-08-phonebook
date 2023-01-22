@@ -17,7 +17,9 @@ const ContactForm = () => {
   };
 
   const checkIsInContacts = newName =>
-    contacts.some(({ name }) => name.toLowerCase() === newName.toLowerCase());
+    contacts.some(
+      ({ name }) => name.toLowerCase() === newName.toLowerCase().trim()
+    );
 
   const onSubmit = async (values, { resetForm }) => {
     const { name } = values;
