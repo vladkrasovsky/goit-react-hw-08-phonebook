@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Link } from '@chakra-ui/react';
+import { Box, Link } from '@chakra-ui/react';
 
 const navItems = [
   { href: '/register', text: 'Register' },
@@ -10,16 +10,16 @@ const AuthNav = () => {
   const location = useLocation();
 
   return (
-    <nav>
+    <Box as="nav" display="flex" gap={3}>
       {navItems.map(
         ({ href, text }) =>
           href !== location.pathname && (
-            <Link as={NavLink} to={href} key={href} ml={3}>
+            <Link as={NavLink} to={href} key={href}>
               {text}
             </Link>
           )
       )}
-    </nav>
+    </Box>
   );
 };
 

@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks';
-import { Link } from '@chakra-ui/react';
+import { Box, Link } from '@chakra-ui/react';
 
 const Navigation = () => {
   const { isLoggedIn } = useAuth();
   const activeLinkStyle = { fontWeight: 'bold' };
 
   return (
-    <nav>
-      <Link as={NavLink} to="/" mr={3} _activeLink={activeLinkStyle}>
+    <Box as="nav" display="flex" gap={3}>
+      <Link as={NavLink} to="/" _activeLink={activeLinkStyle}>
         Home
       </Link>
       {isLoggedIn && (
@@ -16,7 +16,7 @@ const Navigation = () => {
           Contacts
         </Link>
       )}
-    </nav>
+    </Box>
   );
 };
 
